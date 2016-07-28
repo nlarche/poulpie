@@ -4,7 +4,6 @@ var webpack = require('webpack');
 
 var srcPath = path.resolve(__dirname, 'src');
 var indexHtmlPath = path.resolve(__dirname, 'index.html');
-var faviconPath = path.resolve(__dirname, 'favicon.ico');
 var buildPath = path.join(__dirname, 'dist');
 
 var production = process.env.NODE_ENV === "production";
@@ -68,7 +67,6 @@ var config = {
     new HtmlWebpackPlugin({
       inject: true,
       template: indexHtmlPath,
-      favicon: faviconPath
     })
   ]
 };
@@ -82,7 +80,6 @@ if (production) {
     new HtmlWebpackPlugin({
       inject: true,
       template: indexHtmlPath,
-      favicon: faviconPath,
       minify: {
         removeComments: true,
         collapseWhitespace: true,
