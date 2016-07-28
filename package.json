@@ -1,0 +1,83 @@
+{
+  "name": "poulpie",
+  "version": "1.0.0",
+  "description": "poulpie",
+  "main": "index.js",
+  "private" : true,
+  "scripts": {
+    "test": "CONFIG=$(pwd)/__tests__/helpers/webpack.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=test ava",
+    "check-coverage": "nyc check-coverage --lines 90 --functions 90 --branches 90",
+    "coverage": "nyc --reporter=lcov --reporter=text npm run test && npm run check-coverage",
+    "report-coveralls": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "start": "webpack-dev-server",
+    "build": "npm run coverage && rimraf dist && NODE_ENV=production webpack",
+    "copy": "copyup www/* dist",
+    "deploy": "npm run build && npm run copy && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nlarche/poulpie.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-webpack-loaders": "^0.7.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "chai": "^3.5.0",
+    "codecov": "^1.0.1",
+    "copyfiles": "^1.0.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^3.1.1",
+    "eslint-loader": "^1.4.1",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-react": "^5.2.2",
+    "file-loader": "^0.9.0",
+    "gh-pages": "^0.11.0",
+    "html-webpack-plugin": "2.22.0",
+    "jsdom": "^9.4.1",
+    "nyc": "^7.1.0",
+    "postcss-cssnext": "^2.7.0",
+    "postcss-loader": "^0.9.1",
+    "rimraf": "^2.5.4",
+    "style-loader": "^0.13.1",
+    "stylelint": "^7.0.2",
+    "stylelint-config-standard": "^11.0.0",
+    "svg-url-loader": "^1.0.3",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard"
+  },
+  "dependencies": {
+    "bulma": "^0.1.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-google-analytics": "^0.2.0"
+  },
+  "ava": {
+    "files": [
+      "src/**/__tests__/*.js"
+    ],
+    "failFast": true,
+    "tap": true,
+    "require": [
+      "./__tests__/helpers/setup-browser-env.js"
+    ],
+    "babel": "inherit"
+  },
+  "nyc": {
+    "exclude": [
+      "**/__tests__/**"
+    ],
+    "include": [
+      "src/**"
+    ]
+  }
+}
