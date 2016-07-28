@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "poulpie",
   "main": "index.js",
-  "private" : true,
+  "private": true,
   "scripts": {
     "test": "CONFIG=$(pwd)/__tests__/helpers/webpack.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=test ava",
     "check-coverage": "nyc check-coverage --lines 90 --functions 90 --branches 90",
@@ -59,7 +59,11 @@
     "bulma": "^0.1.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-google-analytics": "^0.2.0"
+    "react-google-analytics": "^0.2.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.0",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2"
   },
   "ava": {
     "files": [

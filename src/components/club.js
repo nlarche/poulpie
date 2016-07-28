@@ -1,14 +1,13 @@
 import React from 'react';
 
-export default class App extends React.Component {
+export default class Club extends React.Component {
   constructor() {
     super();
-
   }
   render() {
     return (
       <div>
-       App works
+         Club
       </div>
     );
   }
