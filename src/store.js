@@ -8,10 +8,14 @@ import { clubs   } from './mock/clubs';
 
 const defaultState = {
   clubs,
-  selectedClub : undefined
+  selectedClub: undefined
 };
 
-const store = createStore(rootReducer, defaultState);
+const enhancers = compose(
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+);
+
+const store = createStore(rootReducer, defaultState, enhancers);
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
