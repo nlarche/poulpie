@@ -4,10 +4,11 @@ import { browserHistory } from 'react-router';
 
 import rootReducer from './reducers/index';
 
-import { list as club   } from './mock/mock';
+import { clubs   } from './mock/clubs';
 
 const defaultState = {
-  club,
+  clubs,
+  selectedClub : undefined
 };
 
 const store = createStore(rootReducer, defaultState);

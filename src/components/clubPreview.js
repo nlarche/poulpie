@@ -1,16 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-export default class Club extends React.Component {
+export default class ClubPreview extends React.Component {
   constructor() {
     super();
   }
   render() {
-
-    const { clubId } = this.props.params;
-
-    const i = this.props.clubs.findIndex((club) => club.id === clubId);
-    const club = this.props.clubs[i];
-
+    const { club } = this.props;
     return (
       <div>
         <div>{club.name}</div>
@@ -19,6 +15,9 @@ export default class Club extends React.Component {
         <div>{club.email}</div>
         <div>{club.website}</div>
         <div>{club.adress}</div>
+        <div>
+          <Link to={`/club/${club.id}`} > detail</Link>
+        </div>
       </div>
     );
   }

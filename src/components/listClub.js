@@ -1,7 +1,6 @@
 import React from 'react';
 import ItemListClub  from './itemListClub';
-
-import { list as data   } from '../mock/mock';
+import ClubPreview  from './clubPreview';
 
 export default class ListClub extends React.Component {
   constructor() {
@@ -11,10 +10,13 @@ export default class ListClub extends React.Component {
     return (
       <div>
         <div>
-          { data.map((club, i) => <ItemListClub key={i} i={i} item={club} {...this.props} />) }
+          { this.props.clubs ?
+              this.props.clubs.map((club, i) =>
+              <ItemListClub key={i} i={i} item={club} {...this.props} />)
+             : '' }
         </div>
         <div>
-           {this.props.children}
+           {this.props.selectedClub ? <ClubPreview club={this.props.selectedClub} /> : ''}
         </div>
       </div>
     );

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import club from './club';
+import clubs, { selectedClub } from './clubs';
 
 const rootReducers = combineReducers({
-  club, routing : routerReducer
+  clubs,
+  selectedClub,
+  routing: routerReducer
 });
 
 export default rootReducers;
