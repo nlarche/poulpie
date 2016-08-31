@@ -11,7 +11,7 @@ export default class ItemListClub extends React.Component {
       <div >
         <div>{item.name}</div>
         <div>{item.logo}</div>
-        <div>{item.adress}</div>
+        <div>{item.address}</div>
         <button onClick={this.props.selectClub.bind(null, item)}> button</button>
         <div>
           <Link to={`/club/${item.id}`} > detail</Link>

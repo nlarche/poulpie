@@ -18,7 +18,7 @@ export default class Club extends React.Component {
         <div>{club.tel}</div>
         <div>{club.email}</div>
         <div>{club.website}</div>
-        <div>{club.adress}</div>
+        <div>{club.address}</div>
       </div>
     );
   }
