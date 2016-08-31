@@ -1,7 +1,11 @@
 export default function clubs(state = [], action) {
   switch (action.type) {
+    case 'ADD_CLUB':
+      return [...state, {
+        ...action.club
+      }];
     default:
-      return state;
+  return state;
   }
 }
 

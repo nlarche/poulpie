@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 import App from './components/app';
 import ListClub from './components/listClub';
 import Club from './components/club';
+import ClubForm from './components/clubForm';
 
 import { Router, Route, IndexRoute } from 'react-router';
 
@@ -17,6 +18,7 @@ const router = (
       <Route path="/" component={App}>
         <IndexRoute component={ListClub} ></IndexRoute>
         <Route path="/club/:clubId" component={Club}></Route>
+        <Route path="/create" component={ClubForm}></Route>
       </Route>
     </Router>
   </Provider>
