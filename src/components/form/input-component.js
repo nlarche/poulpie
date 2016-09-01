@@ -1,6 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
+
 export default class InputComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -53,14 +55,20 @@ export default class InputComponent extends React.Component {
     });
 
     return (
-      <div>
-        <label className="label" htmlFor={this.state.id} >{this.state.label}</label>
+      <div className="control" >
+        <div className="control is-horizontal" >
+          <label className="label" htmlFor={this.state.id} >{capitalizeFirstLetter(this.state.label)}</label>
+          {
+            this.state.optional ? <i>-Optionel</i> : null
+          }
+        </div>
         <p className="control">
           <input className={inputClass} name={this.state.id} type="text" value={this.state.value}
-            onChange={this.onChange} onBlur={this.onBlur} placeholder={this.state.placeholder} />
+            onChange={this.onChange} onBlur={this.onBlur} placeholder={this.state.placeholder}
+            autoComplete="off"/>
           {
             this.state.isInvalid ?
-              <span className="help is-danger">{this.state.invalidMessage}</span> : ''
+              <span className="help is-danger">{this.state.invalidMessage}</span> : null
           }
         </p>
       </div>

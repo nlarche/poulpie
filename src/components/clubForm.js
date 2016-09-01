@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import InputComponent from './form/input-component';
+import isRequire from './form/validation/isRequire';
 
 export default class ClubForm extends React.Component {
   constructor() {
@@ -13,6 +14,10 @@ export default class ClubForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.annuler = this.annuler.bind(this);
+  }
+  annuler() {
+    this.context.router.goBack();
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -44,10 +49,10 @@ export default class ClubForm extends React.Component {
   render() {
     const formInput = [
       { label: 'nom', id: 'name', validateFn: isRequire },
-      { label: 'logo' },
-      { label: 'site internet', id: 'website' },
+      { label: 'logo', optional: true },
+      { label: 'site internet', id: 'website', optional: true },
       { label: 'email', validateFn: isRequire },
-      { label: 'tel' },
+      { label: 'tel', validateFn: isRequire },
       { label: 'adresse', id: 'address', validateFn: isRequire },
     ];
     return (
@@ -58,22 +63,11 @@ export default class ClubForm extends React.Component {
           }
           <p className="control">
             <button className="button is-primary" >Créer nouveau club</button>
-            <button className="button" >Annuler</button>
+            <button className="button" onClick={this.annuler} >Annuler</button>
           </p>
         </form>
       </div>
     );
-  }
-}
-
-function isRequire(value) {
-  if (!value) {
-    return {
-      valid: false,
-      message: 'Champs obligatoire'
-    };
-  } else {
-    return { valid: true };
   }
 }
 
