@@ -56,7 +56,8 @@
     "extends": "stylelint-config-standard"
   },
   "dependencies": {
-    "bulma": "^0.1.0",
+    "bulma": "^0.1.2",
+    "classnames": "^2.2.5",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-google-analytics": "^0.2.0",

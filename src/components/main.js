@@ -8,11 +8,15 @@ export default class Main extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <nav className="nav">
           <Link to="/" >home</Link>
           <Link to="/create" >Nouveau club</Link>
+        </nav>
+        <div className="section">
+          <div className="container">
+            { React.cloneElement(this.props.children, this.props) }
+          </div>
         </div>
-        { React.cloneElement(this.props.children, this.props) }
       </div>
     );
   }
