@@ -19,14 +19,23 @@ export default class InputComponent extends React.Component {
   }
   onChange(e) {
     const newValue = e.target.value;
+
     this.setState({ value: newValue });
-    this.props.onChange({ id: this.state.id, newValue: newValue });
+
+    this.props.onChange({
+      id: this.state.id,
+      newValue: newValue,
+      isValid: !this.state.isInvalid
+    });
   }
   onBlur(e) {
+
     if (this.state.validateFn && typeof this.state.validateFn === 'function') {
+
       const validation = this.state.validateFn(e.target.value);
+
       this.setState({
-        isInvalid: !validation.isValid,
+        isInvalid: !validation.valid,
         invalidMessage: validation.message
       });
     }
@@ -44,7 +53,8 @@ export default class InputComponent extends React.Component {
           <input className={inputClass} name={this.state.id} type="text" value={this.state.value}
             onChange={this.onChange} onBlur={this.onBlur} placeholder={this.state.placeholder} />
           {
-            this.state.isInvalid ? <span className="help is-danger">{this.state.invalidMessage}</span> : ''
+            this.state.isInvalid ?
+              <span className="help is-danger">{this.state.invalidMessage}</span> : ''
           }
         </p>
       </div>
