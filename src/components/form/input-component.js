@@ -29,15 +29,21 @@ export default class InputComponent extends React.Component {
     });
   }
   onBlur(e) {
-
+    this.validate();
+  }
+  validate() {
     if (this.state.validateFn && typeof this.state.validateFn === 'function') {
 
-      const validation = this.state.validateFn(e.target.value);
+      const validation = this.state.validateFn(this.state.value);
 
       this.setState({
         isInvalid: !validation.valid,
         invalidMessage: validation.message
       });
+      return validation.valid;
+    } else {
+      // else always valid
+      return true;
     }
   }
   render() {

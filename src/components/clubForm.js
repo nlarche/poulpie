@@ -16,14 +16,27 @@ export default class ClubForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+
+    let isValid = true;
+    Object.keys(this.refs).forEach((el) => {
+      const input = this.refs[el];
+      if (input.validate && typeof input.validate === 'function') {
+        const valide = input.validate();
+        if (isValid) {
+          isValid = valide;
+        }
+      }
+    });
+
+    if (isValid) {
       this.props.addClub(this.state.form);
       this.context.router.goBack();
+    }
 
   }
   onChange(value) {
     const form = this.state.form;
     form[value.id] = value.newValue;
-    form.isValid = value.isValid;
     this.setState({
       form: form
     });
@@ -33,17 +46,20 @@ export default class ClubForm extends React.Component {
       { label: 'nom', id: 'name', validateFn: isRequire },
       { label: 'logo' },
       { label: 'site internet', id: 'website' },
-      { label: 'email' },
+      { label: 'email', validateFn: isRequire },
       { label: 'tel' },
-      { label: 'adresse', id: 'address' },
+      { label: 'adresse', id: 'address', validateFn: isRequire },
     ];
     return (
       <div>
         <form ref="form" onSubmit={this.handleSubmit}>
-          {this.state.isValid}
           { formInput.map((input, i) =>
-            <InputComponent key={i} {...input} onChange={this.onChange} />) }
-          <input type="submit" hidden />
+            <InputComponent ref={i} key={i} {...input} onChange={this.onChange} />)
+          }
+          <p className="control">
+            <button className="button is-primary" >Créer nouveau club</button>
+            <button className="button" >Annuler</button>
+          </p>
         </form>
       </div>
     );
