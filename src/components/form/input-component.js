@@ -10,20 +10,26 @@ export default class InputComponent extends React.Component {
        ...props
     };
 
-    if (!this.state.ref) {
-      this.state.ref = this.state.label;
+    if (!this.state.id) {
+      this.state.id = this.state.label;
     }
 
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
   }
   onChange(e) {
-    const newText = e.target.value;
-    this.setState({ value: newText });
-    this.props.onChange({ ref: this.state.ref, newValue: newText });
+    const newValue = e.target.value;
+    this.setState({ value: newValue });
+    this.props.onChange({ id: this.state.id, newValue: newValue });
   }
   onBlur(e) {
-    this.setState({ isInvalid: true });
+    if (this.state.validateFn && typeof this.state.validateFn === 'function') {
+      const validation = this.state.validateFn(e.target.value);
+      this.setState({
+        isInvalid: !validation.isValid,
+        invalidMessage: validation.message
+      });
+    }
   }
   render() {
     const inputClass = classnames({
@@ -33,9 +39,9 @@ export default class InputComponent extends React.Component {
 
     return (
       <div>
-        <label className="label">{this.state.label}</label>
+        <label className="label" htmlFor={this.state.id} >{this.state.label}</label>
         <p className="control">
-          <input className={inputClass} type="text" value={this.state.value}
+          <input className={inputClass} name={this.state.id} type="text" value={this.state.value}
             onChange={this.onChange} onBlur={this.onBlur} placeholder={this.state.placeholder} />
           {
             this.state.isInvalid ? <span className="help is-danger">{this.state.invalidMessage}</span> : ''
