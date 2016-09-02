@@ -6,7 +6,6 @@ import capitalizeFirstLetter from '../utils/capitalizeFirstLetter';
 export default class InputComponent extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       value: '',
        ...props
