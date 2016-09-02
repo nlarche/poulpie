@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import InputComponent from './form/input-component';
+import GooglePlaceInput from './form/google-place-input';
 import isRequire from './form/validation/isRequire';
 
 export default class ClubForm extends React.Component {
@@ -61,6 +62,7 @@ export default class ClubForm extends React.Component {
           { formInput.map((input, i) =>
             <InputComponent ref={i} key={i} {...input} onChange={this.onChange} />)
           }
+          <GooglePlaceInput {...formInput[5]} onChange={this.onChange} />
           <p className="control">
             <button className="button is-primary" >Créer nouveau club</button>
             <button className="button" onClick={this.annuler} >Annuler</button>
