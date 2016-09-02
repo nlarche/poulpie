@@ -56,7 +56,9 @@ export default class InputComponent extends React.Component {
     return (
       <div className="control" >
         <div className="control is-horizontal" >
-          <label className="label" htmlFor={this.state.id} >{capitalizeFirstLetter(this.state.label)}</label>
+          <label className="label" htmlFor={this.state.id} >
+                  {capitalizeFirstLetter(this.state.label)}
+          </label>
           {
             this.state.optional ? <i>-Optionel</i> : null
           }
