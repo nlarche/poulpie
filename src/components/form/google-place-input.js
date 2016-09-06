@@ -14,13 +14,26 @@ export default class GooglePlaceInput extends React.Component {
     this.onPlacesChanged = this.onPlacesChanged.bind(this);
   }
   componentDidMount() {
-    const input = findDOMNode(this.refs.child.refs.input);
-    this.searchBox = new google.maps.places.SearchBox(input);
+    const input = document.getElementById(this.props.id);
+    this.searchBox = new google.maps.places.Autocomplete(input);
+    this.searchBox.addListener('place_changed', this.onPlacesChanged);
+  }
+  onPlacesChanged() {
+    this.place = this.searchBox.getPlace();
+
+    this.updateForm(this.place);
+  }
+  updateForm(place) {
+    this.refs.input.onChange({
+      target: {
+        value: place.formatted_address
+      }
+    });
   }
   render() {
     return (
       <div className="control" >
-          <InputComponent ref="child" {...this.props} />
+        <InputComponent ref="input"{...this.props} />
       </div>);
   }
 }

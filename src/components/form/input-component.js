@@ -64,7 +64,7 @@ export default class InputComponent extends React.Component {
           }
         </div>
         <p className="control">
-          <input className={inputClass} ref="input" name={this.state.id} type="text" value={this.state.value}
+          <input className={inputClass} id={this.state.id} name={this.state.id} type="text" value={this.state.value}
             onChange={this.onChange} onBlur={this.onBlur} placeholder={this.state.placeholder}
             autoComplete="off"/>
           {

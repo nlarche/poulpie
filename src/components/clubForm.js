@@ -35,8 +35,11 @@ export default class ClubForm extends React.Component {
     });
 
     if (isValid) {
-      this.props.addClub(this.state.form);
-      this.context.router.goBack();
+      // wait all state change
+      setTimeout(() => {
+        this.props.addClub(this.state.form);
+        this.context.router.goBack();
+      }, 100);
     }
 
   }
@@ -54,15 +57,16 @@ export default class ClubForm extends React.Component {
       { label: 'site internet', id: 'website', optional: true },
       { label: 'email', validateFn: isRequire },
       { label: 'tel', validateFn: isRequire },
-      { label: 'adresse', id: 'address', validateFn: isRequire },
+      ,
     ];
+    const address = { label: 'adresse', id: 'address', validateFn: isRequire };
     return (
       <div>
         <form ref="form" onSubmit={this.handleSubmit}>
           { formInput.map((input, i) =>
             <InputComponent ref={i} key={i} {...input} onChange={this.onChange} />)
           }
-          <GooglePlaceInput {...formInput[5]} onChange={this.onChange} />
+          <GooglePlaceInput {...address} onChange={this.onChange} />
           <p className="control">
             <button className="button is-primary" >Créer nouveau club</button>
             <button className="button" onClick={this.annuler} >Annuler</button>
