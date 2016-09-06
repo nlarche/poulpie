@@ -72,7 +72,6 @@ test('Render an optional Input', t => {
   wrapper.find('input').simulate('blur');
 
   t.falsy(wrapper.find('input').hasClass('is-danger'));
-  t.falsy(wrapper.find('span').hasClass('is-danger'));
 
 });
 
