@@ -1,8 +1,9 @@
 import test from 'ava';
 
 import isRequire from '../isRequire';
+import MESSAGES from '../messages';
 
-const message = 'Champs obligatoire';
+const message = MESSAGES.isRequire;
 
 test('no param, should return a require message a not to be valid', t => {
   const rslt = isRequire();
